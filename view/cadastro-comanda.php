@@ -15,30 +15,22 @@ include_once "../model/Mesa.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de produto</title>
+    <title>Cadastro de Comanda</title>
 </head>
 <body>
-    <p>CADASTRO PRODUTO</p> 
+    <p>CADASTRO COMANDA</p> 
     <form action="../controller/PedidoController.php" method="POST">
     <input type="hidden" id="id_cliente">
       <div>
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
-      <div>
-        <label for="descricao">Descrição</label>
-        <input type="text" id="descricao" name="descricao" required>
-      </div>
-      <div>
-        <label for="valor">Valor</label>
-        <input type="text" id="valor" name="valor" required>
+        <label for="numero">Número</label>
+        <input type="text" id="numero" name="numero" required>
       </div>
       <button type="submit" name="cadastrar" class="btn btn-primary">Salvar</button>
     </form>
     
-    <p>Lista de Produtos:</p>
-    <a href="">Produto1</a>
-    <a href="">Produto2</a>
+    <p>Lista de Comandas:</p>
+    <a href="">Comanda1</a>
+    <a href="">Comanda2</a>
     <br> <br>
     <a href="index.php">VOLTAR</a>
 </body>
