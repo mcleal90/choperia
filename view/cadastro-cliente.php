@@ -1,12 +1,12 @@
 <?php
 include_once "../connection/Conexao.php";
-// include_once "../dao/ClienteDAO.php";
 include_once "../model/Cliente.php";
+include_once "../dao/ClienteDAO.php";
 
 
 //instancia as classes
-// $mesa = new Mesa();
-// $mesadao = new MesaDAO();
+$cliente = new Cliente();
+$clientedao = new ClienteDAO();
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +19,15 @@ include_once "../model/Cliente.php";
 </head>
 <body>
     <p>CADASTRO CLIENTE</p> 
-    <form action="../controller/PedidoController.php" method="POST">
+    <form action="../controller/ClienteController.php" method="POST">
     <input type="hidden" id="id_cliente">
       <div>
-        <label for="comanda">Comanda</label>
-        <input type="text" id="comanda" name="comanda" required>
+        <label for="id_comanda_cliente">Comanda</label>
+        <input type="text" id="id_comanda_cliente" name="id_comanda_cliente" required>
       </div>
       <div>
-        <label for="mesa">Mesa</label>
-        <input type="text" id="mesa" name="mesa" required>
+        <label for="id_mesa_cliente">Mesa</label>
+        <input type="text" id="id_mesa_cliente" name="id_mesa_cliente" required>
       </div>
       <button type="submit" name="cadastrar" class="btn btn-primary">Salvar</button>
     </form>

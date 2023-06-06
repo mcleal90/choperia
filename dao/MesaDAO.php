@@ -22,7 +22,7 @@ class MesaDAO{
 
     public function read() {
         try {
-            $sql = "SELECT * FROM mesa order by numero_mesa desc";
+            $sql = "SELECT * FROM mesa order by numero_mesa asc";
             $result = Conexao::getConexao()->query($sql);
             $lista = $result->fetchAll(PDO::FETCH_ASSOC);
             $f_lista = array();

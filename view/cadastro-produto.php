@@ -1,12 +1,12 @@
 <?php
 include_once "../connection/Conexao.php";
-// include_once "../dao/MesaDAO.php";
-include_once "../model/Mesa.php";
+include_once "../dao/ProdutoDAO.php";
+include_once "../model/Produto.php";
 
 
 //instancia as classes
-// $mesa = new Mesa();
-// $mesadao = new MesaDAO();
+$produto = new Produto();
+$produtodao = new ProdutoDAO();
 ?>
 
 <!DOCTYPE html>
@@ -19,27 +19,56 @@ include_once "../model/Mesa.php";
 </head>
 <body>
     <p>CADASTRO PRODUTO</p> 
-    <form action="../controller/PedidoController.php" method="POST">
-    <input type="hidden" id="id_cliente">
+    <form action="../controller/ProdutoController.php" method="POST">
+    <input type="hidden" id="id_produto">
       <div>
         <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome_produto" name="nome_produto" required>
       </div>
       <div>
         <label for="descricao">Descrição</label>
-        <input type="text" id="descricao" name="descricao" required>
+        <input type="text" id="descricao_produto" name="descricao_produto">
       </div>
       <div>
         <label for="valor">Valor</label>
-        <input type="text" id="valor" name="valor" required>
+        <input type="text" id="valor_produto" name="valor_produto" required>
       </div>
       <button type="submit" name="cadastrar" class="btn btn-primary">Salvar</button>
     </form>
     
-    <p>Lista de Produtos:</p>
-    <a href="">Produto1</a>
-    <a href="">Produto2</a>
-    <br> <br>
-    <a href="index.php">VOLTAR</a>
+    <!-- LISTAGEM -->
+    <p>Lista de Produtos</p>
+    <table>
+      <thead>
+        <tr>       
+          <th scope="col" hidden>Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      <?php foreach ($produtodao->read() as $produto) : ?>
+        <tr>
+            <td hidden><?= $produto->getId_produto() ?></td>
+            <td><?= $produto->getNome_produto() ?></td>
+            <td><?= $produto->getDescricao_produto() ?></td>
+            <td><?= $produto->getValor_produto() ?></td>
+            <?php $status_produto = ($produto->getStatus_produto() == 0) ? 'Disponível' : 'Sem estoque'; ?>
+            <td><?= $status_produto ?></td>
+            <td>
+                <button data-toggle="modal" data-target="#editar><?= $produto->getId_produto() ?>">
+                    Editar
+                </button>
+                <a href="../controller/ProdutoController.php?del=<?= $produto->getId_produto() ?>">
+                <button type="button">Excluir</button>
+                </a>
+            </td>
+        </tr>
+      <?php endforeach ?>
+    </tbody>
+  </table>
+  <button type="button" onclick="location.href='index.php'">Voltar</button>
 </body>
 </html>
