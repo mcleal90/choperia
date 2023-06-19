@@ -30,6 +30,12 @@ include_once "../model/Cliente.php";
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
         .card-body {
             padding: 20px;
         }
@@ -39,7 +45,7 @@ include_once "../model/Cliente.php";
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>CADASTRO PEDIDO</h1> 
+                <h1 class="card-title">CADASTRO PEDIDO</h1> 
                 <form action="../controller/PedidoController.php" method="POST">
                     <input type="hidden" id="id_pedido">
                     <div class="mb-3">
@@ -68,9 +74,9 @@ include_once "../model/Cliente.php";
                     </div>
                     <button type="submit" name="cadastrar" class="btn btn-primary">Salvar</button>
                 </form>
+                <a href="index.php" class="btn btn-secondary mt-3">VOLTAR</a>
             </div>
         </div>
-        <a href="index.php" class="btn btn-secondary mt-3">VOLTAR</a>
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>

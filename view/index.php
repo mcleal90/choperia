@@ -52,13 +52,14 @@ $clientedao = new ClienteDAO();
                                 <td><?= $cliente->getId_mesa_cliente() ?></td>
                                 <td><?= $cliente->getData_cliente() ?></td>
                                 <td>
-                                    <div class="text-center">
+                                    <div>
                                         <button class="btn btn-warning" data-toggle="modal" data-target="#editar<?= $cliente->getId_cliente() ?>">
                                             Editar
                                         </button>
                                         <a href="../controller/ClienteController.php?del=<?= $cliente->getId_cliente() ?>">
                                             <button class="btn btn-danger" type="button">Excluir</button>
                                         </a>
+                                        <a class="btn btn-primary" href="listar-pedidos.php">Pedidos</a>
                                     </div>
                                 </td>
                             </tr>

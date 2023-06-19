@@ -23,6 +23,12 @@ $clientedao = new ClienteDAO();
             max-width: 500px;
         }
 
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
         .card-body {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
