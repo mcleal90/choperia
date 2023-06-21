@@ -1,9 +1,4 @@
 <?php
-// private $id_produto;
-// private $nome_produto;
-// private $descricao_produto;
-// private $valor_produto;
-// private $status_produto;
 include_once "../connection/Conexao.php";
 include_once "../model/Produto.php";
 include_once "../dao/ProdutoDAO.php";
@@ -28,8 +23,8 @@ if(isset($_POST['cadastrar'])){
     } else {
         echo 'Erro';
     }
-
 } 
+
 // se a requisição for editar
 else if(isset($_POST['editar'])){
 

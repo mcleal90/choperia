@@ -1,14 +1,11 @@
 <?php
 include_once "../connection/Conexao.php";
-// include_once "../dao/PedidoDAO.php";
-// include_once "../dao/ClienteDAO.php";
+include_once "../dao/PedidoDAO.php";
 include_once "../model/Pedido.php";
-include_once "../model/Cliente.php";
-
 
 // instancia as classes
-// $mesa = new Mesa();
-// $mesadao = new MesaDAO();
+$pedido = new Pedido();
+$pedidodao = new PedidoDAO();
 ?>
 
 <!DOCTYPE html>
@@ -49,28 +46,24 @@ include_once "../model/Cliente.php";
                 <form action="../controller/PedidoController.php" method="POST">
                     <input type="hidden" id="id_pedido">
                     <div class="mb-3">
-                        <label for="comanda" class="form-label">Comanda</label>
-                        <input type="text" id="comanda" name="comanda" class="form-control" required>
+                        <label for="id_comanda_cliente_pedido" class="form-label">Comanda</label>
+                        <input type="text" id="id_comanda_cliente_pedido" name="id_comanda_cliente_pedido" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="mesa" class="form-label">Mesa</label>
-                        <input type="text" id="mesa" name="mesa" class="form-control" required>
+                        <label for="id_produto_pedido" class="form-label">Produto</label>
+                        <input type="text" id="id_produto_pedido" name="id_produto_pedido" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="produto" class="form-label">Produto</label>
-                        <input type="text" id="produto" name="produto" class="form-control" required>
+                        <label for="quantidade_pedido" class="form-label">Quantidade</label>
+                        <input type="text" id="quantidade_pedido" name="quantidade_pedido" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="quantidade" class="form-label">Quantidade</label>
-                        <input type="text" id="quantidade" name="quantidade" class="form-control" required>
+                        <label for="adicional_pedido" class="form-label">Adicional</label>
+                        <input type="text" id="adicional_pedido" name="adicional_pedido" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="adicional" class="form-label">Adicional</label>
-                        <input type="text" id="adicional" name="adicional" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="observacao" class="form-label">Observacao</label>
-                        <input type="text" id="observacao" name="observacao" class="form-control" required>
+                        <label for="observacao_pedido" class="form-label">Observacao</label>
+                        <input type="text" id="observacao_pedido" name="observacao_pedido" class="form-control">
                     </div>
                     <button type="submit" name="cadastrar" class="btn btn-primary">Salvar</button>
                 </form>

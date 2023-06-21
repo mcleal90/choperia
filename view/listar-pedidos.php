@@ -1,12 +1,11 @@
 <?php
 include_once "../connection/Conexao.php";
-include_once "../dao/ProdutoDAO.php";
-include_once "../model/Produto.php";
+include_once "../dao/PedidoDAO.php";
+include_once "../model/Pedido.php";
 
-
-//instancia as classes
-$produto = new Produto();
-$produtodao = new ProdutoDAO();
+// instancia as classes
+$pedido = new Pedido();
+$pedidodao = new PedidoDAO();
 ?>
 
 <!DOCTYPE html>
@@ -36,50 +35,63 @@ $produtodao = new ProdutoDAO();
 
         .table {
             margin-top: 20px;
+            font-family: Arial, sans-serif; /* Altera a fonte da tabela */
         }
         
         .btn {
             margin-top: 10px;
         }
+        
+        th {
+            font-size: 18px; /* Aumenta a fonte do cabeçalho da tabela */
+            padding-right: 10px; /* Separa os itens do cabeçalho da tabela */
+        }
     </style>
 </head>
 <body>
-    <h2>Lista de Pedidos</h2>
-        <table class="table">
-            <thead>
-                <tr>       
-                    <th hidden>Id</th>
-                    <th>Comanda</th>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Adicional</th>
-                    <th>Observacao</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($produtodao->read() as $produto) : ?>
-                <tr>
-                    <td hidden><?= $produto->getId_produto() ?></td>
-                    <td><?= $produto->getNome_produto() ?></td>
-                    <td><?= $produto->getDescricao_produto() ?></td>
-                    <td><?= $produto->getValor_produto() ?></td>
-                    <?php $status_produto = ($produto->getStatus_produto() == 0) ? 'Disponível' : 'Sem estoque'; ?>
-                    <td><?= $status_produto ?></td>
-                    <td></td>
-                    <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#editar<?= $produto->getId_produto() ?>">
-                            Editar
-                        </button>
-                        <a href="../controller/ProdutoController.php?del=<?= $produto->getId_produto() ?>">
-                            <button class="btn btn-danger" type="button">Excluir</button>
-                        </a>
-                    </td>
-                </tr>
-            <?php endforeach ?>
-            </tbody>
-        </table>
-        <button class="btn btn-secondary mt-3" onclick="location.href='index.php'">Voltar</button>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="mt-4">Lista de Pedidos</h2>
+                <table class="table">
+                    <thead>
+                        <tr>       
+                            <th scope="col" hidden>Id Pedido</th>
+                            <th scope="col" hidden>Id Cliente</th>
+                            <th scope="col">Comanda</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Adicional</th>
+                            <th scope="col">Observacao</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($pedidodao->read() as $pedido) : ?>
+                        <tr>
+                            <td hidden><?= $pedido->getId_pedido()  ?></td>
+                            <td hidden><?= $pedido->getId_cliente_pedido() ?></td>
+                            <td><?= $pedido->getId_comanda_cliente_pedido() ?></td>
+                            <?php $nome_produto = ($pedido->getId_produto_pedido() == 1) ? 'Chopp 300Ml' : 'Não cadastrado'; ?>
+                            <td><?= $nome_produto?></td>
+                            <td><?= $pedido->getQuantidade_pedido() ?></td>
+                            <td><?= $pedido->getAdicional_pedido() ?></td>
+                            <td><?= $pedido->getObservacao_pedido() ?></td>
+                            <td>
+                                <a class="btn btn-primary" href="editar-pedido.php?id=<?= $pedido->getId_pedido() ?>">
+                                    Editar
+                                </a>
+                                <a href="../controller/PedidoController.php?del=<?= $pedido->getId_pedido() ?>">
+                                    <button class="btn btn-danger" type="button">Excluir</button>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary mt-3" onclick="location.href='index.php'">Voltar</button>
+            </div>
+        </div>
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>

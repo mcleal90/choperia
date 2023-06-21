@@ -2,11 +2,16 @@
 include_once "../connection/Conexao.php";
 include_once "../model/Cliente.php";
 include_once "../dao/ClienteDAO.php";
+include_once "../model/Pedido.php";
+include_once "../dao/PedidoDAO.php";
+
 
 
 //instancia as classes
 $cliente = new Cliente();
 $clientedao = new ClienteDAO();
+$pedido = new Pedido();
+$pedidodao = new PedidoDAO();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +42,7 @@ $clientedao = new ClienteDAO();
                 <table class="table">
                     <thead>
                         <tr>       
-                            <th scope="col" hidden>Id</th>
+                            <th scope="col">Id</th>
                             <th scope="col">Comanda</th>
                             <th scope="col">Mesa</th>
                             <th scope="col">Data</th>
@@ -47,7 +52,7 @@ $clientedao = new ClienteDAO();
                     <tbody>
                         <?php foreach ($clientedao->read() as $cliente) : ?>
                             <tr>
-                                <td hidden><?= $cliente->getId_cliente() ?></td>
+                                <td><?= $cliente->getId_cliente() ?></td>
                                 <td><?= $cliente->getId_comanda_cliente() ?></td>
                                 <td><?= $cliente->getId_mesa_cliente() ?></td>
                                 <td><?= $cliente->getData_cliente() ?></td>
@@ -59,7 +64,7 @@ $clientedao = new ClienteDAO();
                                         <a href="../controller/ClienteController.php?del=<?= $cliente->getId_cliente() ?>">
                                             <button class="btn btn-danger" type="button">Excluir</button>
                                         </a>
-                                        <a class="btn btn-primary" href="listar-pedidos.php">Pedidos</a>
+                                        <a class="btn btn-primary" href="listar-pedidos.php?id_cliente=<?= $cliente->getId_cliente() ?>">Pedidos</a>
                                     </div>
                                 </td>
                             </tr>

@@ -9,9 +9,13 @@ class ProdutoDAO{
     public function create(Produto $produto) {
         try {
             $sql = "INSERT INTO produto (                   
-                  nome_produto, descricao_produto, valor_produto)
+                  nome_produto, 
+                  descricao_produto, 
+                  valor_produto)
                   VALUES (
-                  :nome_produto, :descricao_produto, :valor_produto)";
+                  :nome_produto, 
+                  :descricao_produto, 
+                  :valor_produto)";
 
             $p_sql = Conexao::getConexao()->prepare($sql);
             $p_sql->bindValue(":nome_produto", $produto->getNome_produto());
