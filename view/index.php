@@ -59,7 +59,7 @@ $pedidodao = new PedidoDAO();
                                         <button class="btn btn-warning btn-editar" data-target="#editar<?= $cliente->getId_cliente() ?>">
                                             Editar
                                         </button>
-                                        <a href="../controller/ClienteController.php?del=<?= $cliente->getId_cliente() ?>">
+                                        <a href="../controller/ClienteController.php?del=1&id=<?= $cliente->getId_cliente() ?>">
                                             <button name="del" class="btn btn-danger" type="button">Excluir</button>
                                         </a>
                                         <a class="btn btn-primary" href="listar-pedidos.php?id_cliente=<?= $cliente->getId_cliente() ?>">Pedidos</a>

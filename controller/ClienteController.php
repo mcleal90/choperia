@@ -43,10 +43,10 @@ else if(isset($_POST['editar'])){
 // se a requisição for deletar
 else if(isset($_GET['del'])){
 
-    $cliente->setId_cliente($_GET['del']);
-
+    $cliente->setId_cliente($_GET['id']);
     $clientedao->delete($cliente);
-
+    
+    // echo ($_GET['id']);
     header("Location: ../view/index.php");
 }else{
     header("Location: ../../");
