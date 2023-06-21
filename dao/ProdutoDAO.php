@@ -47,7 +47,6 @@ class ProdutoDAO{
         try {
             $sql = "UPDATE produto set
                 
-                  id_produto=:id_produto,
                   nome_produto=:nome_produto              
                   descricao_produto=:descricao_produto              
                   valor_produto=:valor_produto              

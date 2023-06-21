@@ -72,20 +72,55 @@ $pedidodao = new PedidoDAO();
                             <td hidden><?= $pedido->getId_pedido()  ?></td>
                             <td hidden><?= $pedido->getId_cliente_pedido() ?></td>
                             <td><?= $pedido->getId_comanda_cliente_pedido() ?></td>
-                            <?php $nome_produto = ($pedido->getId_produto_pedido() == 1) ? 'Chopp 300Ml' : 'Não cadastrado'; ?>
+                            <?php $nome_produto = ($pedido->getId_produto_pedido() == 1) ? 'Chopp 300ml' : 'Não cadastrado'; ?>
                             <td><?= $nome_produto?></td>
                             <td><?= $pedido->getQuantidade_pedido() ?></td>
                             <td><?= $pedido->getAdicional_pedido() ?></td>
                             <td><?= $pedido->getObservacao_pedido() ?></td>
                             <td>
-                                <a class="btn btn-primary" href="editar-pedido.php?id=<?= $pedido->getId_pedido() ?>">
-                                    Editar
-                                </a>
-                                <a href="../controller/PedidoController.php?del=<?= $pedido->getId_pedido() ?>">
-                                    <button class="btn btn-danger" type="button">Excluir</button>
-                                </a>
+                                <button class="btn btn-warning btn-editar" data-target="#editar<?= $pedido->getId_pedido() ?>">Editar</button>
+                                <a href="../controller/MesaController.php?del=<?= $pedido->getId_pedido() ?>" class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
+                        <!-- Modal de Edição -->
+                        <div class="modal fade" id="editar<?= $pedido->getId_pedido() ?>" tabindex="-1" role="dialog" aria-labelledby="editar<?= $pedido->getId_pedido() ?>Label" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editar<?= $pedido->getId_pedido() ?>Label">Editar Pedido</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Formulário de Edição -->
+                                        <form action="../controller/PedidoController.php" method="POST">
+                                            <!-- Campos de edição -->
+                                            <input type="hidden" name="id_pedido" value="<?= $pedido->getId_pedido() ?>">
+                                            <div class="mb-3">
+                                                <label for="id_produto_pedido" class="form-label">Produto</label>
+                                                <input type="text" id="id_produto_pedido" name="id_produto_pedido" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="quantidade_pedido" class="form-label">Quantidade</label>
+                                                <input type="text" id="quantidade_pedido" name="quantidade_pedido" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="adicional_pedido" class="form-label">Adicional</label>
+                                                <input type="text" id="adicional_pedido" name="adicional_pedido" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="observacao_pedido" class="form-label">Observacao</label>
+                                                <input type="text" id="observacao_pedido" name="observacao_pedido" class="form-control">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" name="editar" class="btn btn-primary">Salvar Alterações</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php endforeach ?>
                     </tbody>
                 </table>
@@ -94,6 +129,15 @@ $pedidodao = new PedidoDAO();
         </div>
     </div>
     <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-editar').click(function() {
+                var modalId = $(this).data('target');
+                $(modalId).modal('show');
+            });
+        });
+    </script>
 </body>
 </html>

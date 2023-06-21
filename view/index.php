@@ -5,8 +5,6 @@ include_once "../dao/ClienteDAO.php";
 include_once "../model/Pedido.php";
 include_once "../dao/PedidoDAO.php";
 
-
-
 //instancia as classes
 $cliente = new Cliente();
 $clientedao = new ClienteDAO();
@@ -58,16 +56,45 @@ $pedidodao = new PedidoDAO();
                                 <td><?= $cliente->getData_cliente() ?></td>
                                 <td>
                                     <div>
-                                        <button class="btn btn-warning" data-toggle="modal" data-target="#editar<?= $cliente->getId_cliente() ?>">
+                                        <button class="btn btn-warning btn-editar" data-target="#editar<?= $cliente->getId_cliente() ?>">
                                             Editar
                                         </button>
                                         <a href="../controller/ClienteController.php?del=<?= $cliente->getId_cliente() ?>">
-                                            <button class="btn btn-danger" type="button">Excluir</button>
+                                            <button name="del" class="btn btn-danger" type="button">Excluir</button>
                                         </a>
                                         <a class="btn btn-primary" href="listar-pedidos.php?id_cliente=<?= $cliente->getId_cliente() ?>">Pedidos</a>
                                     </div>
                                 </td>
                             </tr>
+                            <!-- Modal de Edição -->
+                            <div class="modal fade" id="editar<?= $cliente->getId_cliente() ?>" tabindex="-1" role="dialog" aria-labelledby="editar<?= $cliente->getId_cliente() ?>Label" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editar<?= $cliente->getId_cliente() ?>Label">Editar Cliente</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Conteúdo do modal de edição -->
+                                            <form action="../controller/ClienteController.php" method="POST">
+                                                <input type="hidden" name="id_cliente" value="<?= $cliente->getId_cliente() ?>">
+                                                <div class="mb-3">
+                                                    <label for="id_comanda_cliente_edit" class="form-label">Comanda</label>
+                                                    <input type="text" id="id_comanda_cliente_edit" name="id_comanda_cliente" class="form-control" value="<?= $cliente->getId_comanda_cliente() ?>" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="id_mesa_cliente_edit" class="form-label">Mesa</label>
+                                                    <input type="text" id="id_mesa_cliente_edit" name="id_mesa_cliente" class="form-control" value="<?= $cliente->getId_mesa_cliente() ?>" required>
+                                                </div>
+                                                <button type="submit" name="editar" class="btn btn-primary">Salvar Alterações</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fim Modal de Edição -->
                         <?php endforeach ?>
                     </tbody>
                 </table>
@@ -87,5 +114,14 @@ $pedidodao = new PedidoDAO();
 
     <!-- Adicionar os scripts do Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-editar').click(function() {
+                var modalId = $(this).data('target');
+                $(modalId).modal('show');
+            });
+        });
+    </script>
 </body>
 </html>

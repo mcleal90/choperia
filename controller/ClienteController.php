@@ -38,7 +38,7 @@ else if(isset($_POST['editar'])){
 
     $clientedao->update($cliente);
 
-    header("Location: index.php");
+    header("Location: ../view/index.php");
 }
 // se a requisição for deletar
 else if(isset($_GET['del'])){
@@ -47,7 +47,7 @@ else if(isset($_GET['del'])){
 
     $clientedao->delete($cliente);
 
-    header("Location: index.php");
+    header("Location: ../view/index.php");
 }else{
     header("Location: ../../");
 }

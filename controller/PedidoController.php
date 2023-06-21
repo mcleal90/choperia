@@ -30,22 +30,25 @@ if(isset($_POST['cadastrar'])){
 // se a requisição for editar
 else if(isset($_POST['editar'])){
 
-    $mesa->setNumero_mesa($d['numero_mesa']);
-    $mesa->setStatus_mesa($d['status_mesa']);
-    $mesa->setId_mesa($d['id_mesa']);
+    $pedido->setId_pedido($d['id_pedido']);
+    $pedido->setId_comanda_cliente_pedido($d['id_comanda_cliente_pedido']);
+    $pedido->setId_produto_pedido($d['id_produto_pedido']);
+    $pedido->setQuantidade_pedido($d['quantidade_pedido']);
+    $pedido->setAdicional_pedido($d['adicional_pedido']);
+    $pedido->setObservacao_pedido($d['observacao_pedido']);
 
-    $mesadao->update($mesa);
+    $pedidodao->update($pedido);
 
-    header("Location: index.php");
+    header("Location: ../view/index.php");
 }
 // se a requisição for deletar
 else if(isset($_GET['del'])){
 
-    $mesa->setId_mesa($_GET['del']);
+    $pedido->setId_pedido($_GET['del']);
+    
+    $pedidodao->delete($pedido);
 
-    $mesadao->delete($mesa);
-
-    header("Location: index.php");
+    header("Location: ../view/index.php");
 }else{
     header("Location: ../../");
 }

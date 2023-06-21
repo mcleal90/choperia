@@ -67,36 +67,38 @@ class PedidoDAO{
         }
     }
      
-    public function update(produto $produto) {
+    public function update(pedido $pedido) {
         try {
-            $sql = "UPDATE produto set
+            $sql = "UPDATE pedido set
                 
-                  id_produto=:id_produto,
-                  nome_produto=:nome_produto              
-                  descricao_produto=:descricao_produto              
-                  valor_produto=:valor_produto              
-                  status_produto=:status_produto              
-                                                                       
-                  WHERE id_produto = :id_produto";
+                quantidade_pedido=:quantidade_pedido,          
+                adicional_pedido=:adicional_pedido              
+                observacao_pedido=:observacao_pedido              
+                id_cliente_pedido=:id_cliente_pedido                
+                id_produto_pedido=:id_produto_pedido                
+                                                                    
+                WHERE 
+                    id_pedido = :id_pedido";
             $p_sql = Conexao::getConexao()->prepare($sql);
-            $p_sql->bindValue(":nome_produto", $produto->getNome_produto());
-            $p_sql->bindValue(":descricao_produto", $produto->getDescricao_produto());
-            $p_sql->bindValue(":valor_produto", $produto->getValor_produto());
-            $p_sql->bindValue(":status_produto", $produto->getStatus_produto());
+            $p_sql->bindValue(":quantidade_pedido", $pedido->getQuantidade_pedido());
+            $p_sql->bindValue(":adicional_pedido", $pedido->getAdicional_pedido());
+            $p_sql->bindValue(":observacao_pedido", $pedido->getObservacao_pedido());
+            $p_sql->bindValue(":id_cliente_pedido", $pedido->getId_cliente_pedido());
+            $p_sql->bindValue(":id_produto_pedido", $pedido->getId_cliente_pedido());
             return $p_sql->execute();
         } catch (Exception $e) {
-            print "Ocorreu um erro ao tentar fazer atualização do produto<br> $e <br>";
+            print "Ocorreu um erro ao tentar fazer atualização do pedido<br> $e <br>";
         }
     }
 
-    public function delete(produto $produto) {
+    public function delete(pedido $pedido) {
         try {
-            $sql = "DELETE FROM produto WHERE id_produto = :id_produto";
+            $sql = "DELETE FROM pedido WHERE id_pedido = :id_pedido";
             $p_sql = Conexao::getConexao()->prepare($sql);
-            $p_sql->bindValue(":id_produto", $produto->getId_produto());
+            $p_sql->bindValue(":id_pedido", $pedido->getId_pedido());
             return $p_sql->execute();
         } catch (Exception $e) {
-            echo "Erro ao excluir produto<br> $e <br>";
+            echo "Erro ao excluir pedido<br> $e <br>";
         }
     }    
 

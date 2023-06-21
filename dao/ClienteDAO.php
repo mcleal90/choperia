@@ -44,9 +44,9 @@ class ClienteDAO{
                 
                 id_comanda_cliente=:id_comanda_cliente,
                 id_mesa_cliente=:id_mesa_cliente,
-                status_cliente=:status_cliente
-                                                                       
-                  WHERE id_cliente = :id_cliente";
+                status_cliente=:status_cliente            
+            WHERE 
+                id_cliente = :id_cliente";
             $p_sql = Conexao::getConexao()->prepare($sql);
             $p_sql->bindValue(":id_comanda_cliente", $cliente->getId_comanda_cliente());
             $p_sql->bindValue(":id_mesa_cliente", $cliente->getId_mesa_cliente());

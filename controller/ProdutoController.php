@@ -35,7 +35,7 @@ else if(isset($_POST['editar'])){
 
     $produtodao->update($produto);
 
-    header("Location: index.php");
+    header("Location: ../view/index.php");
 }
 // se a requisição for deletar
 else if(isset($_GET['del'])){
@@ -44,7 +44,7 @@ else if(isset($_GET['del'])){
 
     $produtodao->delete($produto);
 
-    header("Location: index.php");
+    header("Location: ../view/index.php");
 }else{
     header("Location: ../../");
 }

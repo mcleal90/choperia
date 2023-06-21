@@ -3,7 +3,7 @@ include_once "../connection/Conexao.php";
 include_once "../dao/MesaDAO.php";
 include_once "../model/Mesa.php";
 
-//instancia as classes
+// instancia as classes
 $mesa = new Mesa();
 $mesadao = new MesaDAO();
 ?>
@@ -76,17 +76,49 @@ $mesadao = new MesaDAO();
                         <?php $status_comanda = ($mesa->getStatus_mesa() == 0) ? 'Livre' : 'Ocupada'; ?>
                         <td><?= $status_comanda ?></td>
                         <td>
-                            <a href="../controller/MesaController.php?edit=<?= $mesa->getId_mesa() ?>" class="btn btn-primary">Editar</a>
+                            <button class="btn btn-warning btn-editar" data-target="#editar<?= $mesa->getId_mesa() ?>">Editar</button>
                             <a href="../controller/MesaController.php?del=<?= $mesa->getId_mesa() ?>" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
+                    <!-- Modal de Edição -->
+                    <div class="modal fade" id="editar<?= $mesa->getId_mesa() ?>" tabindex="-1" role="dialog" aria-labelledby="editar<?= $mesa->getId_mesa() ?>Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editar<?= $mesa->getId_mesa() ?>Label">Editar Mesa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Conteúdo do modal de edição -->
+                                    <form action="../controller/MesaController.php" method="POST">
+                                        <input type="hidden" name="id_mesa" value="<?= $mesa->getId_mesa() ?>">
+                                        <div class="mb-3">
+                                            <label for="numero_mesa_edit" class="form-label">Número</label>
+                                            <input type="text" id="numero_mesa_edit" name="numero_mesa" class="form-control" value="<?= $mesa->getNumero_mesa() ?>" required>
+                                        </div>
+                                        <button type="submit" name="editar" class="btn btn-primary">Salvar Alterações</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php endforeach ?>
             </tbody>
         </table>
         <button class="btn btn-secondary" onclick="location.href='index.php'">Voltar</button>
     </div>
     <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-editar').click(function() {
+                var modalId = $(this).data('target');
+                $(modalId).modal('show');
+            });
+        });
+    </script>
 </body>
 </html>
-
