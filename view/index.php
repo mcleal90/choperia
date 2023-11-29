@@ -20,12 +20,12 @@ $pedidodao = new PedidoDAO();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Adicionar link para o Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
-    <title>Sysbreja</title>
+    <title>Choperia</title>
 </head>
 <body>
     <div class="container">
         <div class="text-center mt-5">
-            <h1>SYSBREJA</h1>
+            <h1>CHOPERIA</h1>
             <div class="d-flex justify-content-center mt-3"> <!-- Adicionar classe d-flex e justify-content-center -->
                 <a class="btn btn-primary me-2" href="cadastro-cliente.php">CADASTRAR CLIENTE</a> <!-- Adicionar classe me-2 para margin direita -->
                 <a class="btn btn-primary" href="cadastro-pedido.php">NOVO PEDIDO</a>

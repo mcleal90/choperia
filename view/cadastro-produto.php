@@ -48,7 +48,7 @@ $produtodao = new ProdutoDAO();
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">CADASTRO PRODUTO</h1>
+                <h1 class="card-title">CADASTRO DE PRODUTOS</h1>
                 <form action="../controller/ProdutoController.php" method="POST">
                     <input type="hidden" id="id_produto">
                     <div class="mb-3">

@@ -72,7 +72,7 @@ $pedidodao = new PedidoDAO();
                             <td hidden><?= $pedido->getId_pedido()  ?></td>
                             <td hidden><?= $pedido->getId_cliente_pedido() ?></td>
                             <td><?= $pedido->getId_comanda_cliente_pedido() ?></td>
-                            <?php $nome_produto = ($pedido->getId_produto_pedido() == 1) ? 'Chopp 300Ml' : 'Não cadastrado'; ?>
+                            <?php $nome_produto = ($pedido->getId_produto_pedido() == 1) ? 'Chopp 300Ml' : 'Chopp 500Ml'; ?>
                             <td><?= $nome_produto?></td>
                             <td><?= $pedido->getQuantidade_pedido() ?></td>
                             <td><?= $pedido->getAdicional_pedido() ?></td>
